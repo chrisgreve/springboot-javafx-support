@@ -9,8 +9,9 @@ import java.util.*;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
-import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
+
+// copied from: https://github.com/yanzhao77/springboot-javafx-support/tree/master/src/test/java/de/felixroske/jfxsupport
 
 public class PropertyReaderHelperTest {
 
@@ -37,21 +38,21 @@ public class PropertyReaderHelperTest {
 	}
 
 	@Test
-    @DisplayName ("Single value")
+	@DisplayName ("Single value")
 	public void singleValueTest() throws Exception {
 		final List<String> list = PropertyReaderHelper.get(envSingleEntryMock, "entry");
 		assertThat(list, IsIterableContainingInAnyOrder.containsInAnyOrder("entry"));
 	}
 
 	@Test
-    @DisplayName ("Multiple values")
+	@DisplayName ("Multiple values")
 	public void multipleValuesTest() {
 		final List<String> list = PropertyReaderHelper.get(envArrayMock, "entry");
 		assertThat(list, IsIterableContainingInAnyOrder.containsInAnyOrder("entry_0", "entry_1", "entry_2"));
 	}
 
 	@Test
-    @DisplayName ("Set if existing key is present ")
+	@DisplayName ("Set if existing key is present ")
 	public void setIfExistingKeyIsPresentTest() {
 		final TestObject testObject = new TestObject();
 
@@ -61,7 +62,7 @@ public class PropertyReaderHelperTest {
 	}
 
 	@Test
-    @DisplayName ("Set if existing key is not present ")
+	@DisplayName ("Set if existing key is not present ")
 	public void setIfExistingKeyIsNotPresentTest() {
 		final TestObject testObject = new TestObject();
 
@@ -70,15 +71,15 @@ public class PropertyReaderHelperTest {
 		assertThat(testObject.getStringEntry(), is("UNSET"));
 	}
 
-    @Test
-    @DisplayName ("Determine file path from package name")
-    public void determineFilePathFromPackageNameTest() {
-        final String path = PropertyReaderHelper.determineFilePathFromPackageName(getClass());
-        assertEquals("/de/felixroske/jfxsupport/", path);
-    }
+	@Test
+	@DisplayName ("Determine file path from package name")
+	public void determineFilePathFromPackageNameTest() {
+		final String path = PropertyReaderHelper.determineFilePathFromPackageName(getClass());
+		assertEquals("/de/felixroske/jfxsupport/", path);
+	}
 
-    class TestObject {
-        private String stringEntry = "UNSET";
+	class TestObject {
+		private String stringEntry = "UNSET";
 
 		private Long longEntry = Long.valueOf(0);
 
@@ -93,7 +94,7 @@ public class PropertyReaderHelperTest {
 		public Long getLongEntry() {
 			return longEntry;
 		}
-        public void setLongEntry(final Long longEntry) {
+		public void setLongEntry(final Long longEntry) {
 			this.longEntry = longEntry;
 		}
 

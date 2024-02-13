@@ -5,29 +5,43 @@
 
   <groupId>de.roskenet</groupId>
   <artifactId>springboot-javafx-support</artifactId>
-  <version>2.1.7-SNAPSHOT</version>
+  <version>3.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
+  <!-- much of the spring 3.x code copied from https://github.com/yanzhao77/springboot-javafx-support/ -->
   <name>springboot-javafx-support</name>
-  <description>Support for Spring Boot and JavaFX 8</description>
+  <description>Support for Spring Boot 3.x.x and JavaFX 21</description>
   <url>http://springboot-javafx-support.readthedocs.io</url>
 
   <properties>
+    <java.version>21</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <junit.version>5.0.1</junit.version>
-    <junit-platform.version>1.0.1</junit-platform.version>
-    <testfx.version>4.0.8-alpha</testfx.version>
-    <spring-framework.version>5.2.22.RELEASE</spring-framework.version>
-    <spring-boot.version>2.2.11.RELEASE</spring-boot.version>
-    <slf4j.version>1.7.25</slf4j.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
+    <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-fxml -->
+    <javafx.version>21.0.2</javafx.version>
+
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring -->
+    <spring-framework.version>6.0.16</spring-framework.version>
+    <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot -->
+    <spring-boot.version>3.2.2</spring-boot.version>
+
+    <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+    <junit.version>5.10.2</junit.version>
+    <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher -->
+    <junit-platform.version>1.10.2</junit-platform.version>
+    <!-- https://mvnrepository.com/artifact/org.testfx/testfx-junit5 -->
+    <testfx.version>4.0.18</testfx.version>
+
+    <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+    <slf4j.version>2.0.12</slf4j.version>
   </properties>
 
   <scm>
-    <connection>git@github.com:roskenet/springboot-javafx-support.git</connection>
-    <developerConnection>git@github.com:roskenet/springboot-javafx-support.git</developerConnection>
-    <url>https://github.com/roskenet/springboot-javafx-support</url>
+    <connection>git@github.com:chrisgreve/springboot-javafx-support.git</connection>
+    <developerConnection>git@github.com:chrisgreve/springboot-javafx-support.git</developerConnection>
+    <url>https://github.com/chrisgreve/springboot-javafx-support</url>
   </scm>
 
   <developers>
@@ -100,6 +114,13 @@
         <version>${junit-platform.version}</version>
         <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-fxml</artifactId>
+      <version>${javafx.version}</version>
+    </dependency>
+
     <dependency>
       <groupId>org.testfx</groupId>
       <artifactId>testfx-core</artifactId>
@@ -107,21 +128,16 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-        <groupId>org.testfx</groupId>
-        <artifactId>testfx-core</artifactId>
-        <version>${testfx.version}</version>
-        <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>org.testfx</groupId>
       <artifactId>testfx-junit5</artifactId>
       <version>${testfx.version}</version>
       <scope>test</scope>
     </dependency>
+     <!-- https://mvnrepository.com/artifact/org.testfx/openjfx-monocle -->
       <dependency>
           <groupId>org.testfx</groupId>
           <artifactId>openjfx-monocle</artifactId>
-          <version>8u76-b04</version>
+          <version>17.0.10</version>
       </dependency>
   </dependencies>
 
@@ -134,10 +150,11 @@
 
   <build>
     <plugins>
+      <!-- https://mvnrepository.com/artifact/org.sonatype.plugins/nexus-staging-maven-plugin -->
       <plugin>
         <groupId>org.sonatype.plugins</groupId>
         <artifactId>nexus-staging-maven-plugin</artifactId>
-        <version>1.6.3</version>
+        <version>1.6.13</version>
         <extensions>true</extensions>
         <configuration>
           <serverId>ossrh</serverId>
@@ -145,10 +162,12 @@
           <autoReleaseAfterClose>true</autoReleaseAfterClose>
         </configuration>
       </plugin>
+      <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-gpg-plugin -->
+      <!--
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-gpg-plugin</artifactId>
-        <version>1.5</version>
+        <version>3.1.0</version>
         <executions>
           <execution>
             <id>sign-artifacts</id>
@@ -159,10 +178,12 @@
           </execution>
         </executions>
       </plugin>
+      -->
+      <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-source-plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
-        <version>2.2.1</version>
+        <version>3.3.0</version>
         <executions>
           <execution>
             <id>attach-sources</id>
@@ -172,10 +193,11 @@
           </execution>
         </executions>
       </plugin>
+      <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-javadoc-plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.9.1</version>
+        <version>3.6.3</version>
         <executions>
           <execution>
             <id>attach-javadocs</id>
@@ -185,20 +207,22 @@
           </execution>
         </executions>
       </plugin>
+      <!-- https://mvnrepository.com/artifact/org.codehaus.mojo/findbugs-maven-plugin -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>findbugs-maven-plugin</artifactId>
-        <version>3.0.3</version>
+        <version>3.0.5</version>
       </plugin>
       <plugin>
         <groupId>org.eluder.coveralls</groupId>
         <artifactId>coveralls-maven-plugin</artifactId>
-        <version>4.1.0</version>
+        <version>4.3.0</version>
       </plugin>
+      <!-- https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin -->
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.7.4.201502262128</version>
+        <version>0.8.11</version>
         <executions>
           <execution>
             <id>prepare-agent</id>
@@ -208,22 +232,12 @@
           </execution>
         </executions>
       </plugin>
-        <plugin>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <version>2.19.1</version>
-            <dependencies>
-                <dependency>
-                    <groupId>org.junit.platform</groupId>
-                    <artifactId>junit-platform-surefire-provider</artifactId>
-                    <version>${junit-platform.version}</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.junit.jupiter</groupId>
-                    <artifactId>junit-jupiter-engine</artifactId>
-                    <version>${junit.version}</version>
-                </dependency>
-            </dependencies>
-        </plugin>
+      <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.2.2</version>
+      </plugin>
     </plugins>
   </build>
 </project>

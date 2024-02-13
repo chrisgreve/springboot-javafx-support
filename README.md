@@ -5,15 +5,15 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/roskenet/springboot-javafx-support/blob/master/LICENSE)
 # springboot-javafx-support
 Attention:
-The current master is for Spring Boot 2 and Spring Framework 5.
+The current master is for Spring Boot 3 and Spring Framework 6.
 
 The latest production ready releases: 
 *  For Spring Boot 1.5.x is 1.4.5. (End of life!)
-*  For Spring Boot 2.x is 2.1.6.
+*  For Spring Boot 3.x is 3.0.0.
 
-Spring Boot and JavaFx - A perfect match!
+Spring Boot and JavaFX - A perfect match!
 
-You will need at least JDK1.8 patch level 40.
+You will need at least JDK21.
 
 !!! Currently not available... Server crashed! Find a step-by-step example here: https://www.felixroske.de/page/programmierung/index.html !!!
 
